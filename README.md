@@ -3,8 +3,11 @@
 ## Project Group
 
 Calvin McAdam-Mubiru
+
 Emelia Osborne
+
 Erin Pollard
+
 Shreya Shah
 
 Equal equity.
