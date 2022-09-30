@@ -14,6 +14,5 @@ Equal equity.
 * report/
   -01-Report.md
   
-  
-##Description
+## Description 
 A group project for DST
