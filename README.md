@@ -3,7 +3,7 @@
 ## Project Group
 
 Calvin McAdam-Mubiru
-Emelia Osbourne
+Emelia Osborne
 Erin Pollard
 Shreya Shah
 
