@@ -1,0 +1,123 @@
+---
+title: "Assessment0-dump"
+author: "Emelia Osborne"
+date: "04/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+Started by trying to download the same dataset from the first workshop and run the workshop tasks on it, so that I could then try some similar exploratory data analysis on weather data.
+
+I was having difficulty loading in the data and the easiest solution seemed to be putting them in the same folder as this Rmd file.
+
+Then this code loaded them in.
+
+```{r}
+kddata<-read.csv("kddcup.data_10_percent.gz")
+kddnames=read.table("kddcup.names",sep=":",skip=1,as.is=T)
+colnames(kddata)=c(kddnames[,1],"normal")
+```
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes 
+barplot((sort(table(kddata[,"normal"]))),log="y") # Log axis
+```
+```{r}
+labs=unique(as.character(kddata[,"normal"]))
+names(labs)=labs
+kddlist=lapply(labs,function(x){
+  kddata[kddata[,"normal"]==x,1:41]
+})
+```
+```{r}
+kddmean=t(sapply(kddlist,function(x)colMeans(x[,c(1,5:41)])))
+library("gplots")
+heatmap.2(log(kddmean+1),margins =c(9,15),trace="none",cexCol = 0.5)
+mycols=c("dst_bytes","src_bytes","duration","dst_host_svd_count","dst_host_count","srv_count","count")
+```
+```{r}
+kddfreq=apply(kddmean,2,function(x)x/(sum(x)+1))
+heatmap.2(kddfreq[,!is.nan(kddfreq[1,])],margins =c(9,15),trace="none",cexCol = 0.5)
+```
+```{r}
+mycategorical=colnames(kddata)[2:4]
+classlist=lapply(mycategorical,function(mycat){
+  table(kddata[,c(mycat,"normal")])
+})
+for(i in 1:3) heatmap.2(log(classlist[[i]]+1),margins =c(9,15),trace="none",main=mycategorical[i])
+```
+```{r}
+kddsd=t(sapply(kddlist,function(x){
+  apply(x[,c(1,5:41)],2,sd)
+}))
+heatmap.2(log(kddsd/(kddmean+0.01)+1),margins =c(9,15),trace="none")
+```
+
+https://www.kaggle.com/datasets/josephw20/uk-met-office-weather-data?resource=download
+
+```{r}
+weatherData<-read.csv("METOfficeWeatherData.csv")
+```
+
+```{r}
+head(weatherData)
+```
+
+Use bar plots to look at how many entries fall into certain categories.
+
+First, how many entries there are from each location, year month, to see if they are even.
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot((sort(table(weatherData[,"station"])))) 
+```
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot((sort(table(weatherData[,"station"]))),cex.names=0.5) #Labels smaller font so can see them all.
+```
+
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot(((table(weatherData[,"year"]))))
+```
+
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot(((table(weatherData[,"month"]))))
+```
+
+
+So we can see that entries are not constant over locations or years, for which they increase up until around 1980, then stay constant until around 2000, after which they start to decrease. They are however almost constant by month. I would guess that this means that locations take readings every month, but are not active over the whole period of this data.
+
+Let's look at if this is the case for station 'lerwick'.
+
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot(((table(weatherData[weatherData$station == "lerwick","year"]))))
+```
+So yes, this station was only active from 1930.
+
+Then I made heatmaps of the measured data by station.
+
+```{r}
+labsWeather=unique(as.character(weatherData[,"station"]))
+names(labsWeather)=labsWeather
+weatherList=lapply(labsWeather,function(y){
+  weatherData[weatherData[,"station"]==y,3:7]
+})
+```
+```{r}
+weatherMean=t(sapply(weatherList,function(y){colMeans(y[,c(1:5)],na.rm = TRUE)}))
+library("gplots")
+heatmap.2(log(weatherMean+1),trace="none", cexRow = 0.1)
+```
+There seems to be variation in all of the features. Normalising will help compare.
+```{r}
+weatherFreq=apply(weatherMean,2,function(x)x/(sum(x)+1))
+heatmap.2(weatherFreq[,!is.nan(weatherFreq[1,])],trace="none", cexRow = 0.1)
+```
+
+Average frost and rain have the largest range. It doesn't seem obvious if any of the features have correlation.
