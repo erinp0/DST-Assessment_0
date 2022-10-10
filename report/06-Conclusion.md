@@ -8,4 +8,4 @@ The data we explored and the visualisations produced weren't that diverse or 'in
 
 In future renditions of this work, we would like to explore the connection between weather and other variables, such as crop yield, storm frequency and sea level. This would provide insight into more interesting questions about causation and correlation and provide the basis for predictive techniques.
 
-Our group had no experience sharing code via GitHub, hence it was a slightly tedious task as GitHub and its other interfaces aren't the most intuitive to use. However, our regular in-person group meetings allowed us to learn from each other's mistakes and become more familiar with GitHub. 
+Our group had no experience sharing code via GitHub, hence it was a slightly tedious task as GitHub and its other interfaces aren't the most intuitive to use. However, our regular in-person group meetings allowed us to learn from each other's mistakes and become more familiar with GitHub. We recognise that GitHub is a very powerful tool for collaborative programming and are hoping that with practice, we will become more comfortable navigating both the online interface and GitHub for desktop.
