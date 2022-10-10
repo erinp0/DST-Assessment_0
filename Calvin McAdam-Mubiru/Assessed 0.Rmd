@@ -1,9 +1,3 @@
----
-title: "Assessment 0"
-output: html_document
-date: "2022-10-05"
----
-
 ## Introduction
 
 The following document contains code and data retrieved from an article to do with analysing data on the weather. The specific example is on the US and Portland.
