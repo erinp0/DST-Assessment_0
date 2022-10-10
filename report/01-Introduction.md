@@ -10,7 +10,7 @@ Our first project focuses on the analysis of weather data with the following mai
 
 We explored 4 different datasets, each of which can be found below:
 * [Leeds Weather Data](https://www.kaggle.com/datasets/muthuj7/weather-dataset?resource=download)
-* [Seattle Weather Data]()
+* [Seattle Weather Data](https://www.kaggle.com/code/aryansan69/notebookbc95ebdba5/data?select=seattle-weather.csv)
 * [UK Weather Station Data 1941-2020](https://www.kaggle.com/datasets/josephw20/uk-met-office-weather-data?resource=download)
 * [Bristol Weather Data 2021](https://www.visualcrossing.com/weather/weather-data-services) - the data was collated on this website and stored as a .csv file (see 05-Analysis)
 * [Portland International Airport Weather Data](https://raw.githubusercontent.com/wpbSabi/weather/main/towardsDS/weather_towardsds.csv)
