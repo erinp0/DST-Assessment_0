@@ -1,6 +1,6 @@
 # Conclusion
 
-This project has provided a solid foundation for collaboration and programming for future assessments. As a group, we identified Python as our programming strength, hence most of our analysis is done in this language, with some supporting R analysis. For our first assessment, most of the code provided is borrowed from other sources as we our main objectives were to find 'good' datasets, practice using GitHub and to truly understand the code which we were running. 
+This project has provided a solid foundation for collaboration and programming for future assessments. As a group, we identified Python as our programming strength, hence most of our analysis is done in this language, with some supporting R analysis. For our first assessment, most of the code provided is borrowed from other sources as our main objectives were to find 'good' datasets, practice using GitHub and to truly understand the code which we were running. 
 
 As the brief for the project was broad, each team member explored a different dataset and explored different data analysis techniques, without working towards a common goal or trying to answer the same question. This has led to different analytical reports under the same theme, however in future reports, we would like to approach the brief more collaboratively.
 
