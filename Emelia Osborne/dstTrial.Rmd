@@ -121,3 +121,13 @@ heatmap.2(weatherFreq[,!is.nan(weatherFreq[1,])],trace="none", cexRow = 0.1)
 ```
 
 Average frost and rain have the largest range. It doesn't seem obvious if any of the features have correlation.
+
+https://www.visualcrossing.com/weather/weather-data-services
+```{r}
+bristolData<-read.csv("bristol 2021-01-01 to 2021-12-31.csv")
+```
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot((sort(table(bristolData[,"description"]))),cex.names=0.5) #Labels smaller font so can see them all.
+
+```
