@@ -1,6 +1,6 @@
 ## Introduction
 
-The following document contains code and data retrieved from an article to do with analysing data on the weather. The specific example is on the US and Portland between 1941 and 2021.
+The following document contains code and data retrieved from an [article](https://towardsdatascience.com/democratizing-historical-weather-data-with-r-cc3c76dde7c%3E5) to do with analysing data on the weather. The specific example is on the US and Portland International Airport between 1941 and 2021.
 
 The following pre-requisites are required and this block should be run first so that the suitable packages are loaded in.
 
