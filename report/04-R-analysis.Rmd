@@ -1,0 +1,90 @@
+---
+title: "04-R-analysis"
+author: "Emelia Osborne"
+date: "10/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The following analysis uses ideas from the [exploratory data analysis lectures of the Data Science Toolbox](https://dsbristol.github.io/dst/coursebook/01.html) module at the University of Bristol, applied to a [dataset of UK weather](https://www.kaggle.com/datasets/josephw20/uk-met-office-weather-data?resource=download) instead of cybersecurity data.
+
+These are the requirements for this markdown document.
+```{r}
+if (!require("gplots")) install.packages("gplots")
+library("gplots")
+```
+
+To load in the data, make sure you have downloaded "MET Office Weather Data.csv" from the above link to your working directory. You can check where your working directory is using "getwd()" and set it using "setwd(filepathhere)".
+
+```{r}
+weatherData<-read.csv("MET Office Weather Data.csv")
+```
+
+Here is an overview of the first few rows of the dataset. We can see that some data is missing, which could cause issues with analysis down the line, and that there are quite a small range of features.
+```{r}
+head(weatherData)
+```
+
+Using bar plots, we look at how many entries fall into certain categories.
+
+First, we plot how many entries there are from each location, year, and month, to see if they are even.
+```{r}
+par(las=2) # Ask R to plot perpendicular to the axes
+barplot((sort(table(weatherData[,"station"])))) 
+```
+
+The labels are too large to see all of the stations here so we make them smaller.
+```{r}
+par(las=2) 
+barplot((sort(table(weatherData[,"station"]))),cex.names=0.5) #Labels smaller font so can see them all.
+```
+
+```{r}
+par(las=2) 
+barplot(((table(weatherData[,"year"]))))
+```
+
+```{r}
+par(las=2)
+barplot(((table(weatherData[,"month"]))))
+```
+
+
+So we can see that entries are not constant over locations or years, for which they increase up until around 1980, then stay constant until around 2000, after which they start to decrease. They are however almost constant by month. I would guess that this means that locations take readings every month, but are not active over the whole period of this data.
+
+Let's look to see if this is the case for station 'lerwick'.
+
+```{r}
+par(las=2) 
+barplot(((table(weatherData[weatherData$station == "lerwick","year"]))))
+```
+
+So yes, this station was only active from 1930.
+
+We can look at a heatmap of the quantitive data measured by stations.
+
+```{r}
+labsWeather=unique(as.character(weatherData[,"station"]))
+names(labsWeather)=labsWeather
+weatherList=lapply(labsWeather,function(y){
+  weatherData[weatherData[,"station"]==y,3:7]
+})
+```
+```{r}
+weatherMean=t(sapply(weatherList,function(y){colMeans(y[,c(1:5)],na.rm = TRUE)}))
+heatmap.2(log(weatherMean+1),trace="none", cexRow = 0.1)
+```
+
+There seems to be variation in all of the features. Normalising will help compare.
+```{r}
+weatherFreq=apply(weatherMean,2,function(x)x/(sum(x)+1))
+heatmap.2(weatherFreq[,!is.nan(weatherFreq[1,])],trace="none", cexRow = 0.1)
+```
+
+Air frost and rain have the largest range. It doesn't seem obvious if any of the features have correlation.
+
+This dataset has a large number of entries which could be a reason to use it in the future; for now I am going to focus on looking at a dataset with a larger range of features as that might provide a better resource to ask interesting questions.
+
