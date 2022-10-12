@@ -15,6 +15,7 @@ Equal equity.
 ## Reading order
 
 * report/
+
   -01-Introduction.md
   
   -02-PyAnalysis.ipynb
