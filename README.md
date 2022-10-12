@@ -16,14 +16,20 @@ Equal equity.
 
 * report/
   -01-Introduction.md
-  -02-PyAnalysis.ipynb
-  -03-PyAnalysis.ipynb
-  -04-R-analysis.Rmd
-  -04-R-analysis.html
-  -05-PythonAnalysis.ipynb
-  -06-R-analysis.Rmd
-  -07-Conclusion.md
   
+  -02-PyAnalysis.ipynb
+  
+  -03-PyAnalysis.ipynb
+  
+  -04-R-analysis.Rmd
+  
+  -04-R-analysis.html
+  
+  -05-PythonAnalysis.ipynb
+  
+  -06-R-analysis.Rmd
+  
+  -07-Conclusion.md
   
 ## Description 
 A group project for DST
